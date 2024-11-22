@@ -1,0 +1,29 @@
+def secondMaxNum(list1):
+    for j in range(len(list1)-1):
+        for i in range(len(list1)-1,j,-1):
+            if list1[i-1]>list1[i]:
+                temp=list1[i-1]
+                list1[i-1]=list1[i]
+                list1[i]=temp
+    return list1
+def binary_search(sequence, start_element, key):
+    end_element = len(sequence) - 1
+    while start_element <= end_element:
+        middle_element = start_element + (end_element - start_element) // 2
+        if sequence[middle_element] == key:
+            return middle_element
+        elif sequence[middle_element] == key:
+            start_element = middle_element + 1
+        else:
+            end_element = middle_element - 1
+    return -1
+mylist=[6,3,5,2,8,7,9]
+print(secondMaxNum(mylist))
+print(f'Второй по величине макисмальный элемент это {secondMaxNum(mylist)[-2]}')
+list1=secondMaxNum(mylist)
+print(f'Индекс третьего максимального элемента {binary_search(mylist,list1[0], list1[-3])}')
+count = 0
+for i in range(1, len(mylist) - 1):
+    if mylist[i] > mylist[i - 1] and mylist[i] > mylist[i + 1]:
+        count += 1
+print("Количество элементов, которые больше своих соседей:", count)
